@@ -1,2 +1,6 @@
 Flask
 Gunicorn
+Pandas
+Numpy
+SkLearn
+Researches

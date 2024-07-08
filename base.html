@@ -1,4 +1,14 @@
-.blogs {
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mr. HealthPro</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='pictures/rbt.png') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<style>
+  .blogs {
     max-width: 800px;
     color: #000;
     margin: 0 auto;
@@ -105,7 +115,7 @@ body {
     align-items: center;
 }
 
-video#bgVideo {
+#bgVideo {
     position: fixed; /* Fixed position to cover the entire viewport */
     top: 50%;
     left: 50%;
@@ -661,3 +671,46 @@ ul li {
     border-radius: 0 30px 0 0;
     border-bottom: 10px solid #b0cfe4;
   }
+</style>
+<body>
+
+  <video id="bgVideo" autoplay muted loop>
+    <source src="{{ url_for('static', filename='videos/space1.mp4') }}" type="video/mp4">
+    Your browser does not support HTML5 video.
+</video>
+    <nav>
+        <div class="logo">Mr. HealthPro</div>
+        <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('diagnosis') }}">Diagnosis</a></li>
+            <li><a href="{{ url_for('research') }}">Research</a></li>
+            <li><a href="{{ url_for('appointment') }}">Appointment</a></li>
+            <li><a href="{{ url_for('contact') }}">Contact</a></li>
+            <li><a href="{{ url_for('track') }}">Health-Track</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const readMoreButtons = document.querySelectorAll('.read-more');
+        
+        readMoreButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const hiddenContent = this.previousElementSibling;
+                hiddenContent.classList.toggle('hidden-content');
+                
+                if (hiddenContent.classList.contains('hidden-content')) {
+                    this.textContent = 'Read more';
+                    this.classList.remove('read-less');
+                } else {
+                    this.textContent = 'Read less';
+                    this.classList.add('read-less');
+                }
+            });
+        });
+    });
+</script>
+</html>
